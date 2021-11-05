@@ -10,14 +10,18 @@
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
-        <nav class="style-4">
+        <nav class="style-4 mb-5">
             <ul class="menu-4">
-              <li class="current"><a href=" {{path('home')}} " data-hover="Home">Home</a></li>
-              <li><a href="{{path('app_login')}} " data-hover="Hellooo">Se connecter</a></li>
-              <li><a href="{{path('app_register')}} " data-hover="Bienvenue">Inscription</a></li>
-              <li><a href=" {{path('articles')}} " data-hover="les posts"> Articles</a></li>
-              <li><a href="#" data-hover="Mon espace">Mon espace</a></li>
-              <li><a href=" {{path('app_logout')}} " data-hover="à bientôt !">Déconnexion</a></li>
+                <li class="current"><a href=" {{path('home')}} " data-hover="Home">Home</a></li>
+                <li><a href=" {{path('articles')}} " data-hover="les posts"> Articles</a></li>
+                
+                {% if app.user %}
+                <li><a href=" {{path('user')}} " data-hover="Mon espace">Mon espace</a></li>
+                <li><a href=" {{path('app_logout')}} " data-hover="à bientôt !">Déconnexion</a></li>
+                {% else %}
+                    <li><a href="{{path('app_login')}} " data-hover="Hellooo">Se connecter</a></li>
+                    <li><a href="{{path('app_register')}} " data-hover="Bienvenue">Inscription</a></li>
+                {% endif %}
             </ul>
         </nav>
         {% block javascripts %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+         <h2 class="text-center"> Bienvenue {{app.user.name}} </h2>
+        
+    {% if app.user.articles|length == 0 %}
+        <p> vous n'avez pas encore publié d'articles</p>
+        {% else %}
+        <p>vous avez {{app.user.articles|length}} articles en ligne </p>
+        {% for article in articles %}
+            <div class="mb-3">
+                <h3>{{article.title}}</h3> 
+                <p class="text-muted"> {{article.subTitle}}  </p>
+                <p>{{article.content}} </p>
+                <span> <strong>{{article.createdAt|date('d/M/Y')}}</strong> </span>
+                <p class="float-right mb-2"> 
+                    <a class="btn btn-info" href="">Modifier </a> 
+                    <a class="btn btn-danger" href="">Supprimer </a> 
+                </p>
+                <hr>
+            </div>
+        {% endfor %}
+    {% endif %}    
+        
+    </div>
+
+
+{% endblock %}
