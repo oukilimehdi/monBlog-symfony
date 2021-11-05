@@ -1,15 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}espace de {{app.user.name}}{% endblock %}
 
 {% block body %}
     <div class="container">
          <h2 class="text-center"> Bienvenue {{app.user.name}} </h2>
-        
+        <a class="btn btn-info"href=" {{path('ajout_article')}} ">ajouter un article</a>
+
     {% if app.user.articles|length == 0 %}
-        <p> vous n'avez pas encore publié d'articles</p>
+        <p class="mt-4"> vous n'avez pas encore publié d'articles</p>
         {% else %}
-        <p>vous avez {{app.user.articles|length}} articles en ligne </p>
+        <p class="mt-5">vous avez {{app.user.articles|length}} articles en ligne </p>
         {% for article in articles %}
             <div class="mb-3">
                 <h3>{{article.title}}</h3> 

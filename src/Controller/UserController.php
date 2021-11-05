@@ -4,6 +4,8 @@ namespace App\Controller;
 
 
 
+use App\Entity\Article;
+use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,6 +23,19 @@ class UserController extends AbstractController
 
         return $this->render('user/index.html.twig', [
             'articles' => $articles,
+        ]);
+    }
+
+    /**
+     * @Route("/ajout_article", name="ajout_article")
+     */
+    public function ajoutArticle(){
+
+        $article = new Article();
+        $form = $this->createForm(ArticleFormType::class, $article);
+
+        return $this->render('user/ajoutArticle.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
