@@ -22,13 +22,22 @@ class ArticleFormType extends AbstractType
                 'label' => 'Categories'
             ] )
             ->add('title', TextType::class, [
-                'label' => 'Titre'
+                'label' => 'Titre',
+                'attr' => [
+                    'placeholder' => 'Veuillez saisir un titre'
+                ]
             ])
             ->add('subtitle', TextType::class, [
-                'label' => 'description'
+                'label' => 'description',
+                'attr' => [
+                    'placeholder' => 'Veuillez saisir une description'
+                    ]
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'Contenu'
+                'label' => 'Contenu',
+                'attr' => [
+                    'placeholder' => 'Veuillez saisir votre article'
+                ]
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'publier'

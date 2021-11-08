@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
@@ -33,6 +34,7 @@ class Article
     private $content;
 
     /**
+     * @Gedmo\Timestampable(on="create")
      * @ORM\Column(type="datetime_immutable")
      */
     private $createdAt;
@@ -47,12 +49,6 @@ class Article
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="articles")
      */
     private $category;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $image;
-
 
     public function getId(): ?int
     {
@@ -127,18 +123,6 @@ class Article
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
-
-        return $this;
-    }
-
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(string $image): self
-    {
-        $this->image = $image;
 
         return $this;
     }
