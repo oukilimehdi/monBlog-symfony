@@ -5,6 +5,11 @@
 {% block body %}
     <div class="container">
          <h2 class="text-center"> Bienvenue {{app.user.name}} </h2>
+         {% for message in app.flashes('articleSuprime') %}
+            <p class="alert alert-danger"> {{message}}</p>    
+         {% endfor %}
+         
+
         <a class="btn btn-info"href=" {{path('ajout_article')}} ">ajouter un article</a>
 
     {% if app.user.articles|length == 0 %}
@@ -18,8 +23,8 @@
                 <p>{{article.content}} </p>
                 <span> <strong>{{article.createdAt|date('d/M/Y')}}</strong> </span>
                 <p class="float-right mb-2"> 
-                    <a class="btn btn-info" href="">Modifier </a> 
-                    <a class="btn btn-danger" href="">Supprimer </a> 
+                    <a class="btn btn-info" href=" {{path('articles_update', {id: article.id})}} ">Modifier </a> 
+                    <a class="btn btn-danger" href=" {{path('articles_delete', {id: article.id})}} ">Supprimer </a> 
                 </p>
                 <hr>
             </div>
